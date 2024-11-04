@@ -18,6 +18,14 @@ struct Character: Decodable, Identifiable {
 
 extension Character {
     
+    var subtitle: String {
+        var subtitle = species
+        if !type.isEmpty {
+            subtitle += " - \(type)"
+        }
+        return subtitle
+    }
+    
     /// Helper constructor for mocking data
     init(id: Int, name: String) {
         self.init(
