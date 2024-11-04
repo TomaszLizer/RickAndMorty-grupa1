@@ -15,7 +15,7 @@ struct CharacterListRowView: View {
         VStack(alignment: .leading) {
             Text(character.name)
                 .font(.headline)
-            HStack {
+            HStack(spacing: 0) {
                 Text(character.species)
                 Text(" - ")
                 Text(character.type)
