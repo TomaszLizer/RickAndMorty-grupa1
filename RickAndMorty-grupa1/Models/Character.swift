@@ -12,4 +12,19 @@ struct CharacterResponse: Decodable {
 struct Character: Decodable, Identifiable {
     let id: Int
     let name: String
+    let species: String
+    let type: String
+}
+
+extension Character {
+    
+    /// Helper constructor for mocking data
+    init(id: Int, name: String) {
+        self.init(
+            id: id,
+            name: name,
+            species: "TEST_species",
+            type: "TEST_type"
+        )
+    }
 }
