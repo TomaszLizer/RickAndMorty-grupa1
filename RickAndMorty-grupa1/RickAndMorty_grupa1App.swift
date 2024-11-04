@@ -10,7 +10,9 @@ import SwiftUI
 @main
 struct RickAndMorty_grupa1App: App {
     
-    let characters = (1...10000).map { "Character \($0)" }
+    let characters = (1...10000).map {
+        Character(id: UUID().hashValue, name: "Character \($0)")
+    }
     
     var body: some Scene {
         WindowGroup {
