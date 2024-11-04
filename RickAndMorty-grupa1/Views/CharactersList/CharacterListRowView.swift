@@ -17,8 +17,11 @@ struct CharacterListRowView: View {
                 .font(.headline)
             HStack(spacing: 0) {
                 Text(character.species)
-                Text(" - ")
-                Text(character.type)
+                if !character.type.isEmpty {
+                    Text(" - ")
+                    Text(character.type)
+                        .foregroundStyle(Color.red)
+                }
             }
             .font(.footnote)
         }
