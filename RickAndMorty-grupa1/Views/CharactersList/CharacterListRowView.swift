@@ -12,15 +12,12 @@ struct CharacterListRowView: View {
     var character: Character
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
+        VStack(alignment: .leading) {
             Text(character.name)
                 .font(.headline)
-                .background(Color.green)
             Text(character.species)
                 .font(.footnote)
-                .background(Color.brown)
         }
-        .background(Color.yellow)
     }
 }
 
