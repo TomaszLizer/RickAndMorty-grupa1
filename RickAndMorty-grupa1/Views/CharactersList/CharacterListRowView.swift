@@ -19,6 +19,7 @@ struct CharacterListRowView: View {
                 Text(character.species)
                 if !character.type.isEmpty {
                     Text(" - ")
+                        .foregroundStyle(Color.brown)
                     Text(character.type)
                         .foregroundStyle(Color.red)
                 }
@@ -28,11 +29,13 @@ struct CharacterListRowView: View {
     }
 }
 
-#Preview {
+#Preview(traits: .sizeThatFitsLayout) {
     CharacterListRowView(
         character: Character(
             id: UUID().hashValue,
-            name: "Test Character"
+            name: "Rick Sanchez",
+            species: "Human",
+            type: "Scientist"
         )
     )
 }
