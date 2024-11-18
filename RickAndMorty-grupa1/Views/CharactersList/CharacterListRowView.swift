@@ -10,16 +10,19 @@ import SwiftUI
 struct CharacterListRowView: View {
     
     var character: Character
-    @State private var image = UIImage()
     
     var body: some View {
         HStack(spacing: 0) {
-            Image(uiImage: image)
-                .resizable(resizingMode: .stretch)
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 50, height: 50)
-                .clipped()
-                .border(Color.black, width: 1)
+            AsyncImage(
+                url: character.image,
+                content: { image in
+                    image.resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 50, height: 50)
+                        .clipped()
+                },
+                placeholder: { EmptyView()}
+            )
             VStack(alignment: .leading) {
                 Text(character.name)
                     .font(.headline)
@@ -33,15 +36,6 @@ struct CharacterListRowView: View {
                     }
                 }
                 .font(.footnote)
-            }
-        }
-        .task {
-            do {
-                let (data, _) = try await URLSession.shared.data(from: character.image)
-                guard let image = UIImage(data: data) else { return }
-                self.image = image
-            } catch {
-                // do nothing
             }
         }
     }
