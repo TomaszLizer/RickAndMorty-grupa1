@@ -12,17 +12,8 @@ struct CharacterListRowView: View {
     var character: Character
     
     var body: some View {
-        HStack(spacing: 0) {
-            AsyncImage(
-                url: character.image,
-                content: { image in
-                    image.resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 50, height: 50)
-                        .clipped()
-                },
-                placeholder: { EmptyView()}
-            )
+        HStack(spacing: 8) {
+            ProfileImage(imageUrl: character.image)
             VStack(alignment: .leading) {
                 Text(character.name)
                     .font(.headline)
