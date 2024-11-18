@@ -5,6 +5,8 @@
 //  Created by Tomasz Lizer on 28/10/2024.
 //
 
+import Foundation
+
 struct CharacterResponse: Decodable {
     let results: [Character]
 }
@@ -14,6 +16,7 @@ struct Character: Decodable, Identifiable {
     let name: String
     let species: String
     let type: String
+    let image: URL
 }
 
 extension Character {
@@ -32,7 +35,8 @@ extension Character {
             id: id,
             name: name,
             species: "TEST_species",
-            type: "TEST_type"
+            type: "TEST_type",
+            image: URL(string: "https://rickandmortyapi.com/api/character/avatar/1.jpeg")!
         )
     }
 }
