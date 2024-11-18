@@ -13,9 +13,7 @@ struct CharacterListView: View {
     
     var body: some View {
         List(characters) { character in
-            NavigationLink {
-                CharacterDetailsView()
-            } label: {
+            NavigationLink(value: character) {
                 CharacterListRowView(character: character)
             }
         }
