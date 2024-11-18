@@ -10,13 +10,19 @@ import SwiftUI
 struct CharacterListView: View {
     
     @State var characters: [Character]
+    @State private var selectedCharacter: Character?
     
     var body: some View {
         List(characters) { character in
-            NavigationLink(value: character) {
-                CharacterListRowView(character: character)
-            }
+            CharacterListRowView(character: character)
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    selectedCharacter = character
+                }
         }
+        .sheet(item: $selectedCharacter, content: { character in
+            CharacterDetailsView()
+        })
         .task {
             let characterUrlString = "https://rickandmortyapi.com/api/character"
             do {
