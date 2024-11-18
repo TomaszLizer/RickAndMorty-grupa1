@@ -16,7 +16,10 @@ struct RickAndMorty_grupa1App: App {
     
     var body: some Scene {
         WindowGroup {
-            CharacterListView(characters: characters)
+            NavigationView {
+                CharacterListView(characters: characters)
+                    .navigationTitle("Characters")
+            }
         }
     }
 }

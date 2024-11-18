@@ -13,7 +13,11 @@ struct CharacterListView: View {
     
     var body: some View {
         List(characters) { character in
-            CharacterListRowView(character: character)
+            NavigationLink {
+                CharacterDetailsView()
+            } label: {
+                CharacterListRowView(character: character)
+            }
         }
         .task {
             let characterUrlString = "https://rickandmortyapi.com/api/character"
