@@ -9,20 +9,14 @@ import SwiftUI
 
 struct CharacterListView: View {
     
-    @State var characters: [Character]
-    @State private var selectedCharacter: Character?
+    @State var characters: [Character] = []
     
     var body: some View {
         List(characters) { character in
-            CharacterListRowView(character: character)
-                .contentShape(Rectangle())
-                .onTapGesture {
-                    selectedCharacter = character
-                }
+            NavigationLink(value: character) {
+                CharacterListRowView(character: character)
+            }
         }
-        .sheet(item: $selectedCharacter, content: { character in
-            CharacterDetailsView()
-        })
         .task {
             let characterUrlString = "https://rickandmortyapi.com/api/character"
             do {
@@ -54,5 +48,5 @@ let characters: [Character] = [
 ].map { Character(id: UUID().hashValue, name: $0) }
 
 #Preview {
-    CharacterListView(characters: characters)
+    CharacterListView()
 }
