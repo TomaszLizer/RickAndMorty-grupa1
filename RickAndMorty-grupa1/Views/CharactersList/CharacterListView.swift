@@ -23,6 +23,7 @@ struct CharacterListView: View {
                 let response: CharacterResponse = try await object(fromUrlString: characterUrlString)
                 characters = response.results
             } catch {
+                print("DEBUG - error: \(error)")
                 // do nothing
             }
         }

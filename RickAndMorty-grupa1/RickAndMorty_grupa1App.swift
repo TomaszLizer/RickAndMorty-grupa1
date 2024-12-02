@@ -20,7 +20,7 @@ struct RickAndMorty_grupa1App: App {
                 CharacterListView()
                     .navigationTitle("Characters")
                     .navigationDestination(for: Character.self) { character in
-                        CharacterDetailsView()
+                        CharacterDetailsView(character: character)
                     }
             }
         }

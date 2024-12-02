@@ -14,9 +14,26 @@ struct CharacterResponse: Decodable {
 struct Character: Decodable, Identifiable, Hashable {
     let id: Int
     let name: String
+    let status: String
     let species: String
     let type: String
+    let gender: Gender
+    let origin: CharacterLocation
     let image: URL
+}
+
+enum Gender: String, Decodable {
+    
+    case male = "Male"
+    case female = "Female"
+    case unknown = "unknown"
+    case genderless = "Genderless"
+}
+
+struct CharacterLocation: Decodable, Hashable {
+    
+    let name: String
+    let link: String?
 }
 
 extension Character {
@@ -30,13 +47,27 @@ extension Character {
     }
     
     /// Helper constructor for mocking data
-    init(id: Int, name: String) {
+    init(
+        id: Int,
+        name: String,
+        species: String = "TEST_species",
+        type: String = "TEST_type",
+        image: URL = URL(
+            string: "https://rickandmortyapi.com/api/character/avatar/1.jpeg"
+        )!
+    ) {
         self.init(
             id: id,
             name: name,
-            species: "TEST_species",
-            type: "TEST_type",
-            image: URL(string: "https://rickandmortyapi.com/api/character/avatar/1.jpeg")!
+            status: "Status",
+            species: species,
+            type: type,
+            gender: .male,
+            origin: CharacterLocation(
+                name: "Location name",
+                link: "Location link"
+            ),
+            image: image
         )
     }
 }
